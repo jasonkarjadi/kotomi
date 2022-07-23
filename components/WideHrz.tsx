@@ -1,6 +1,10 @@
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 
-const WideHrz: FC<any> = ({ children }) => {
+interface WideHrzProps {
+  children?: ReactNode;
+}
+
+const WideHrz: FC<WideHrzProps> = ({ children }) => {
   return (
     <div className="widehrz">
       {children}

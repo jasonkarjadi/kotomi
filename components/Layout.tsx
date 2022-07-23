@@ -1,8 +1,12 @@
-import { FC, useState } from "react";
+import { FC, ReactNode, useState } from "react";
 import MyNav from "./Nav";
 import WideHrz from "./WideHrz";
 
-const MyLayout: FC = ({ children }: any) => {
+interface MyLayoutProps {
+  children?: ReactNode;
+}
+
+const MyLayout: FC<MyLayoutProps> = ({ children }) => {
   const [izumi, setIzumi] = useState(0);
 
   return (
