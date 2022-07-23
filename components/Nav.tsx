@@ -1,16 +1,16 @@
 import Link, { LinkProps } from "next/link";
-import { ButtonHTMLAttributes, Dispatch, FC, SetStateAction } from "react";
+import { Dispatch, FC, ReactNode, SetStateAction } from "react";
 
 interface NavBtnProps {
-  linkProps: LinkProps;
-  btnProps: ButtonHTMLAttributes<HTMLButtonElement>;
+  href: LinkProps["href"];
+  children?: ReactNode;
 }
 
-const NavBtn: FC<NavBtnProps> = ({ linkProps, btnProps }) => {
+const NavBtn: FC<NavBtnProps> = ({ href, children }) => {
   return (
     <>
-      <Link {...linkProps}>
-        <button {...btnProps} className="navbtn" />
+      <Link href={href}>
+        <button className="navbtn">{children}</button>
       </Link>
       <style jsx>{`
         .navbtn {
@@ -53,19 +53,10 @@ interface MyNavProps {
 const MyNav: FC<MyNavProps> = ({ pagePair: { page, setPage } }) => {
   return (
     <nav className="topnav">
-      <NavBtn
-        linkProps={{ href: "/edawakare" }}
-        btnProps={{ children: "枝分かれ" }}
-      />
-      <NavBtn linkProps={{ href: "/" }} btnProps={{ children: "品詞" }} />
-      <NavBtn
-        linkProps={{ href: "/" }}
-        btnProps={{ children: "未実装", disabled: true }}
-      />
-      <NavBtn
-        linkProps={{ href: "/" }}
-        btnProps={{ children: "未実装", disabled: true }}
-      />
+      <NavBtn href="/edawakare">枝分かれ</NavBtn>
+      <NavBtn href="#">品詞</NavBtn>
+      <NavBtn href="#">未実装</NavBtn>
+      <NavBtn href="#">未実装</NavBtn>
       <style jsx>{`
         .topnav {
           height: 35px;
