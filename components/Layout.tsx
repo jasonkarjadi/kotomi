@@ -1,4 +1,4 @@
-import { FC, ReactNode, useState } from "react";
+import { FC, ReactNode } from "react";
 import MyNav from "./Nav";
 import WideHrz from "./WideHrz";
 
@@ -7,13 +7,11 @@ interface MyLayoutProps {
 }
 
 const MyLayout: FC<MyLayoutProps> = ({ children }) => {
-  const [izumi, setIzumi] = useState(0);
-
   return (
     <div className="layoutcontainer contentlayout">
       <WideHrz />
       <div className="middlecenter">
-        <MyNav pagePair={{ page: izumi, setPage: setIzumi }} />
+        <MyNav />
         <div className="izumi">{children}</div>
         <div
           style={{

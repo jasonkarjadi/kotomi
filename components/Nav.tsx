@@ -1,5 +1,6 @@
 import Link, { LinkProps } from "next/link";
-import { Dispatch, FC, ReactNode, SetStateAction } from "react";
+import { useRouter } from "next/router";
+import { FC, ReactNode } from "react";
 
 interface NavBtnProps {
   href: LinkProps["href"];
@@ -7,50 +8,59 @@ interface NavBtnProps {
 }
 
 const NavBtn: FC<NavBtnProps> = ({ href, children }) => {
+  const { pathname } = useRouter();
+
   return (
     <>
-      <Link href={href}>
-        <button className="navbtn">{children}</button>
-      </Link>
+      {href !== pathname ? (
+        <Link href={href}>
+          <button className="navunit navbtn">{children}</button>
+        </Link>
+      ) : (
+        <h2 className="navunit clicked">{children}</h2>
+      )}
       <style jsx>{`
-        .navbtn {
+        .navunit {
           border: none;
           flex: 1;
-          background: #dd6b20;
           text-decoration: none;
+          background: #9c4221;
+          font-size: 0.875rem;
         }
-        .navbtn + .navbtn {
+        .navunit + .navunit {
           border-left: 2px solid #9c4221;
+        }
+        .navunit:first-child {
+          border-radius: 30px 0 0 0;
+        }
+        .navunit:last-child {
+          border-radius: 0 30px 0 0;
+        }
+        .navbtn {
+          background: #dd6b20;
         }
         .navbtn:hover {
           background: #c05621;
         }
-        .navbtn:disabled {
-          background: #9c4221;
-          color: black;
-        }
         .navbtn:active {
           background: #9c4221;
         }
-        .navbtn:first-child {
-          border-radius: 30px 0 0 0;
-        }
-        .navbtn:last-child {
-          border-radius: 0 30px 0 0;
+        .clicked {
+          font-weight: normal;
+          margin: 0;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          line-height: normal;
         }
       `}</style>
     </>
   );
 };
 
-interface MyNavProps {
-  pagePair: {
-    page: number;
-    setPage: Dispatch<SetStateAction<number>>;
-  };
-}
+interface MyNavProps {}
 
-const MyNav: FC<MyNavProps> = ({ pagePair: { page, setPage } }) => {
+const MyNav: FC<MyNavProps> = () => {
   return (
     <nav className="topnav">
       <NavBtn href="/edawakare">枝分かれ</NavBtn>
