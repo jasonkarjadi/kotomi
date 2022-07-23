@@ -1,11 +1,11 @@
 import { FC } from "react";
 
-const MyFooter: FC = () => {
+const WideHrz: FC<any> = ({ children }) => {
   return (
-    <div className="bottomfooter">
-      <small>Copyright &copy; 2022 Jason Karjadi. All rights reserved</small>
+    <div className="widehrz">
+      {children}
       <style jsx>{`
-        .bottomfooter {
+        .widehrz {
           height: 20px;
           background: #a0aec0;
           text-align: center;
@@ -16,4 +16,4 @@ const MyFooter: FC = () => {
   );
 };
 
-export default MyFooter;
+export default WideHrz;

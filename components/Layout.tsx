@@ -1,14 +1,13 @@
-import MyFooter from "./Footer";
-import MyHeader from "./Header";
-import MyNav from "./Nav";
 import { FC, useState } from "react";
+import MyNav from "./Nav";
+import WideHrz from "./WideHrz";
 
 const MyLayout: FC = ({ children }: any) => {
   const [izumi, setIzumi] = useState(0);
 
   return (
     <div className="layoutcontainer contentlayout">
-      <MyHeader />
+      <WideHrz />
       <div className="middlecenter">
         <MyNav pagePair={{ page: izumi, setPage: setIzumi }} />
         <div className="izumi">{children}</div>
@@ -22,7 +21,9 @@ const MyLayout: FC = ({ children }: any) => {
           About
         </div>
       </div>
-      <MyFooter />
+      <WideHrz>
+        <small>Copyright &copy; 2022 Jason Karjadi. All rights reserved</small>
+      </WideHrz>
       <style jsx>{`
         .layoutcontainer {
           min-height: 100vh;
