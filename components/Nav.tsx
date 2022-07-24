@@ -28,7 +28,6 @@ const NavBtn: FC<NavBtnProps> = ({ href, children }) => {
           flex: 1;
           background: ${colors.lighter};
           font-size: 0.875rem;
-          cursor: pointer;
           border: ${borders.fence};
         }
         .navbtn + .navbtn {

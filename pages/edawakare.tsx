@@ -29,8 +29,7 @@ const EdaWakare: FC = () => {
           position: absolute;
           bottom: 10px;
           left: 0;
-          width: 100%;
-          padding: 0 15px;
+          padding: 0 10px;
         }
         .rowbtn {
           border: none;

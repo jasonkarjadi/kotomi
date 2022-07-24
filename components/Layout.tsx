@@ -48,12 +48,13 @@ const MyLayout: FC<MyLayoutProps> = ({ children }) => {
         }
         .izumi {
           flex: 1;
-          background: ${colors.lighter};
+          background: #ecc94b;
           border-left: ${borders.fence};
           border-right: ${borders.fence};
           // writing-mode: vertical-rl;
           // text-align: center;
           position: relative;
+          overflow-x: auto;
         }
       `}</style>
       <style jsx global>{`
@@ -77,6 +78,9 @@ const MyLayout: FC<MyLayoutProps> = ({ children }) => {
         table {
           border-collapse: collapse;
           border-spacing: 0;
+        }
+        button {
+          cursor: pointer;
         }
       `}</style>
     </div>
