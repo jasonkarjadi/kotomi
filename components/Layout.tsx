@@ -12,18 +12,9 @@ const MyLayout: FC<MyLayoutProps> = ({ children }) => {
     <div className="layoutcontainer contentlayout">
       <WideHrz />
       <div className="middlecenter">
-        <MyNav />
-        <div className="izumi">{children}</div>
-        <div
-          style={{
-            height: "35px",
-            background: colors.lighter,
-            borderRadius: "0 0 30px 30px",
-            border: borders.fence,
-          }}
-        >
-          About
-        </div>
+        <MyNav>
+          <div className="izumi">{children}</div>
+        </MyNav>
       </div>
       <WideHrz>
         <small>Copyright &copy; 2022 Jason Karjadi. All rights reserved</small>

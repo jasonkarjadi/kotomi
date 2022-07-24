@@ -34,10 +34,12 @@ const NavBtn: FC<NavBtnProps> = ({ href, children }) => {
           border-left: none;
         }
         .navbtn:first-child {
-          border-radius: 30px 0 0 0;
+          border-top-left-radius: inherit;
+          border-bottom-left-radius: inherit;
         }
         .navbtn:last-child {
-          border-radius: 0 30px 0 0;
+          border-top-right-radius: inherit;
+          border-bottom-right-radius: inherit;
         }
         .navbtn:hover {
           box-shadow: 0 -1px 5px ${colors.darker} inset;
@@ -57,22 +59,36 @@ const NavBtn: FC<NavBtnProps> = ({ href, children }) => {
   );
 };
 
-interface MyNavProps {}
+interface MyNavProps {
+  children?: ReactNode;
+}
 
-const MyNav: FC<MyNavProps> = () => {
+const MyNav: FC<MyNavProps> = ({ children }) => {
   return (
-    <nav className="topnav">
-      <NavBtn href="/edawakare">枝分かれ</NavBtn>
-      <NavBtn href="#">品詞</NavBtn>
-      <NavBtn href="#">未実装</NavBtn>
-      <NavBtn href="#">未実装</NavBtn>
+    <>
+      <nav className="headnav">
+        <NavBtn href="/edawakare">枝分かれ</NavBtn>
+        <NavBtn href="#">品詞</NavBtn>
+        <NavBtn href="#">未実装</NavBtn>
+        <NavBtn href="#">未実装</NavBtn>
+      </nav>
+      {children}
+      <nav className="footnav">
+        <NavBtn href="/about">About</NavBtn>
+      </nav>
       <style jsx>{`
-        .topnav {
+        nav {
           height: 35px;
           display: flex;
         }
+        .headnav {
+          border-radius: 30px 30px 0 0;
+        }
+        .footnav {
+          border-radius: 0 0 30px 30px;
+        }
       `}</style>
-    </nav>
+    </>
   );
 };
 
