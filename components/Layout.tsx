@@ -1,6 +1,7 @@
 import { FC, ReactNode } from "react";
 import MyNav from "./Nav";
 import WideHrz from "./WideHrz";
+import { borders, colors } from "theme";
 
 interface MyLayoutProps {
   children?: ReactNode;
@@ -16,8 +17,9 @@ const MyLayout: FC<MyLayoutProps> = ({ children }) => {
         <div
           style={{
             height: "35px",
-            background: "#9c4221",
+            background: colors.lighter,
             borderRadius: "0 0 30px 30px",
+            border: borders.fence,
           }}
         >
           About
@@ -46,9 +48,9 @@ const MyLayout: FC<MyLayoutProps> = ({ children }) => {
         }
         .izumi {
           flex: 1;
-          background: #dd6b20;
-          border-top: solid 2px #9c4221;
-          border-bottom: solid 2px #9c4221;
+          background: ${colors.lighter};
+          border-left: ${borders.fence};
+          border-right: ${borders.fence};
           // writing-mode: vertical-rl;
           // text-align: center;
           position: relative;
@@ -57,6 +59,7 @@ const MyLayout: FC<MyLayoutProps> = ({ children }) => {
       <style jsx global>{`
         * {
           box-sizing: border-box;
+          color: #652b19;
         }
         html,
         body {

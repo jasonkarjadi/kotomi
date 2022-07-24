@@ -1,6 +1,7 @@
 import Link, { LinkProps } from "next/link";
 import { useRouter } from "next/router";
 import { FC, ReactNode } from "react";
+import { borders, colors } from "theme";
 
 interface NavBtnProps {
   href: LinkProps["href"];
@@ -14,44 +15,43 @@ const NavBtn: FC<NavBtnProps> = ({ href, children }) => {
     <>
       {href !== pathname ? (
         <Link href={href}>
-          <button className="navunit navbtn">{children}</button>
+          <button className="navbtn">{children}</button>
         </Link>
       ) : (
-        <h2 className="navunit clicked">{children}</h2>
+        <Link href="/">
+          <button className="navbtn clicked">{children}</button>
+        </Link>
       )}
       <style jsx>{`
-        .navunit {
+        .navbtn {
           border: none;
           flex: 1;
-          text-decoration: none;
-          background: #9c4221;
+          background: ${colors.lighter};
           font-size: 0.875rem;
+          cursor: pointer;
+          border: ${borders.fence};
         }
-        .navunit + .navunit {
-          border-left: 2px solid #9c4221;
+        .navbtn + .navbtn {
+          border-left: none;
         }
-        .navunit:first-child {
+        .navbtn:first-child {
           border-radius: 30px 0 0 0;
         }
-        .navunit:last-child {
+        .navbtn:last-child {
           border-radius: 0 30px 0 0;
         }
-        .navbtn {
-          background: #dd6b20;
-        }
         .navbtn:hover {
-          background: #c05621;
+          box-shadow: 0 -1px 5px ${colors.darker} inset;
         }
         .navbtn:active {
-          background: #9c4221;
+          background: #c05621;
+          box-shadow: 0 -1px 5px ${colors.darker} inset;
         }
         .clicked {
-          font-weight: normal;
-          margin: 0;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          line-height: normal;
+          box-shadow: 0 -1px 5px ${colors.darker} inset;
+        }
+        .navbtn.clicked:hover {
+          box-shadow: none;
         }
       `}</style>
     </>
