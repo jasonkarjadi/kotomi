@@ -1,13 +1,16 @@
+import { useRouter } from "next/router";
 import { FC, ReactNode } from "react";
+import { borders, colors } from "theme";
 import MyNav from "./Nav";
 import WideHrz from "./WideHrz";
-import { borders, colors } from "theme";
 
 interface MyLayoutProps {
   children?: ReactNode;
 }
 
 const MyLayout: FC<MyLayoutProps> = ({ children }) => {
+  const { pathname } = useRouter();
+
   return (
     <div className="layoutcontainer contentlayout">
       <WideHrz />
@@ -39,7 +42,7 @@ const MyLayout: FC<MyLayoutProps> = ({ children }) => {
         }
         .izumi {
           flex: 1;
-          background: #ecc94b;
+          background: ${pathname === "/" ? colors.lighter : "#ecc94b"};
           border-left: ${borders.fence};
           border-right: ${borders.fence};
           // writing-mode: vertical-rl;
