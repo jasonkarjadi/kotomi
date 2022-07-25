@@ -1,3 +1,6 @@
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import { faCubes, faSeedling } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link, { LinkProps } from "next/link";
 import { useRouter } from "next/router";
 import { FC, ReactNode } from "react";
@@ -6,22 +9,23 @@ import { borders, colors } from "theme";
 interface NavBtnProps {
   href: LinkProps["href"];
   children?: ReactNode;
+  icon?: IconProp;
 }
 
-const NavBtn: FC<NavBtnProps> = ({ href, children }) => {
+const NavBtn: FC<NavBtnProps> = ({ href, children, icon }) => {
   const { pathname } = useRouter();
+  const clicked = href === pathname;
 
   return (
     <>
-      {href !== pathname ? (
-        <Link href={href}>
-          <button className="navbtn">{children}</button>
-        </Link>
-      ) : (
-        <Link href="/">
-          <button className="navbtn clicked">{children}</button>
-        </Link>
-      )}
+      <Link href={clicked ? "/" : href}>
+        <button className={`navbtn ${clicked && "clicked"}`}>
+          {icon && (
+            <FontAwesomeIcon icon={icon} style={{ marginRight: "2px" }} />
+          )}
+          {children}
+        </button>
+      </Link>
       <style jsx>{`
         .navbtn {
           border: none;
@@ -67,8 +71,12 @@ const MyNav: FC<MyNavProps> = ({ children }) => {
   return (
     <>
       <nav className="headnav">
-        <NavBtn href="/edawakare">枝分かれ</NavBtn>
-        <NavBtn href="#">品詞</NavBtn>
+        <NavBtn href="/edawakare" icon={faSeedling}>
+          枝分かれ
+        </NavBtn>
+        <NavBtn href="#" icon={faCubes}>
+          品詞
+        </NavBtn>
         <NavBtn href="#">未実装</NavBtn>
         <NavBtn href="#">未実装</NavBtn>
       </nav>
