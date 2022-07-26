@@ -1,5 +1,9 @@
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
-import { faCubes, faSeedling } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCubes,
+  faScroll,
+  faSeedling,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link, { LinkProps } from "next/link";
 import { useRouter } from "next/router";
@@ -74,11 +78,12 @@ const MyNav: FC<MyNavProps> = ({ children }) => {
         <NavBtn href="/edawakare" icon={faSeedling}>
           枝分かれ
         </NavBtn>
-        <NavBtn href="#" icon={faCubes}>
-          品詞
+        <NavBtn href="/fuminomoto" icon={faCubes}>
+          文の素
         </NavBtn>
-        <NavBtn href="#">未実装</NavBtn>
-        <NavBtn href="#">未実装</NavBtn>
+        <NavBtn href="/fuminori" icon={faScroll}>
+          文法
+        </NavBtn>
       </nav>
       {children}
       <nav className="footnav">
