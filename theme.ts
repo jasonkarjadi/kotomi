@@ -1,5 +1,3 @@
-const colors = { darker: "#9c4221", lighter: "#dd6b20" };
-const spacing = {};
-const borders = { fence: "1px solid #9c4221" };
-
-export { colors, borders };
+export const colors = { darkgreen: "#48bb78", lightgreen: "#9ae6b4" };
+export const borders = { book: "1px solid #2f855a" };
+export const shadows = { book: "0 -0.125rem 0.25rem #48bb78 inset" };

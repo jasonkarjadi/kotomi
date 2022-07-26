@@ -1,60 +1,78 @@
-import { useRouter } from "next/router";
+import {
+  faChevronDown,
+  faChevronUp,
+  faSeedling,
+  faCubes,
+  faScroll,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FC, ReactNode } from "react";
 import { borders, colors } from "theme";
-import MyNav from "./Nav";
-import WideHrz from "./WideHrz";
+import NavBook from "./NavBook";
 
 interface MyLayoutProps {
   children?: ReactNode;
 }
-
 const MyLayout: FC<MyLayoutProps> = ({ children }) => {
-  const { pathname } = useRouter();
-
   return (
-    <div className="layoutcontainer contentlayout">
-      <WideHrz />
-      <div className="middlecenter">
-        <MyNav>
-          <div className="izumi">{children}</div>
-        </MyNav>
+    <div className="divbody">
+      <div className="header">
+        <nav className="bookshelf">
+          <NavBook href="/edawakare" icon={faSeedling} />
+          <NavBook href="/fuminomoto" icon={faCubes} />
+          <NavBook href="/fuminori" icon={faScroll} />
+        </nav>
+        <button className="pulldown">
+          <FontAwesomeIcon icon={faChevronDown} />
+        </button>
       </div>
-      <WideHrz>
+      <div className="bigboard">{children}</div>
+      <div className="footer">
+        <a>About</a>
         <small>Copyright &copy; 2022 Jason Karjadi. All rights reserved</small>
-      </WideHrz>
+      </div>
       <style jsx>{`
-        .layoutcontainer {
+        .divbody {
           min-height: 100vh;
-          // min-height: -moz-available;
-          // min-height: -webkit-fill-available;
-          // min-height: fill-available;
-        }
-        .contentlayout {
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-        }
-        .middlecenter {
-          height: 70vh;
-          margin: 0 30px;
           display: flex;
           flex-direction: column;
         }
-        .izumi {
-          flex: 1;
-          background: ${pathname === "/" ? colors.lighter : "#ecc94b"};
-          border-left: ${borders.fence};
-          border-right: ${borders.fence};
-          // writing-mode: vertical-rl;
-          // text-align: center;
+        .header {
+          display: flex;
+          flex-direction: column;
+        }
+        .bookshelf {
+          height: 3rem;
+          background: #48bb78;
+          display: flex;
+        }
+        .pulldown {
+          height: 1.5rem;
+          width: 100%;
+          background: ${colors.lightgreen};
+          border: ${borders.book};
+          border-radius: 0 0 0.5rem 0.5rem;
+        }
+        .pulldown:hover {
+          box-shadow: 0 -0.125rem 0.25rem #68d391 inset;
+        }
+        .bigboard {
           position: relative;
+          flex: 1;
           overflow-x: auto;
+        }
+        .footer {
+          height: 1.5rem;
+          background: ${colors.lightgreen};
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0 0.5rem;
         }
       `}</style>
       <style jsx global>{`
         * {
           box-sizing: border-box;
-          color: #652b19;
         }
         html,
         body {
@@ -62,8 +80,8 @@ const MyLayout: FC<MyLayoutProps> = ({ children }) => {
           padding: 0;
         }
         body {
-          line-height: 1;
-          background: #9ae6b4;
+          line-height: normal;
+          background: #fbd38d;
         }
         ol,
         ul {
