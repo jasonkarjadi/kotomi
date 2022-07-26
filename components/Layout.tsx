@@ -1,14 +1,6 @@
-import {
-  faChevronDown,
-  faChevronUp,
-  faSeedling,
-  faCubes,
-  faScroll,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FC, ReactNode } from "react";
-import { borders, colors } from "theme";
-import NavBook from "./NavBook";
+import { colors } from "theme";
+import MyHeader from "./Header";
 
 interface MyLayoutProps {
   children?: ReactNode;
@@ -16,16 +8,7 @@ interface MyLayoutProps {
 const MyLayout: FC<MyLayoutProps> = ({ children }) => {
   return (
     <div className="divbody">
-      <div className="header">
-        <nav className="bookshelf">
-          <NavBook href="/edawakare" icon={faSeedling} />
-          <NavBook href="/fuminomoto" icon={faCubes} />
-          <NavBook href="/fuminori" icon={faScroll} />
-        </nav>
-        <button className="pulldown">
-          <FontAwesomeIcon icon={faChevronDown} />
-        </button>
-      </div>
+      <MyHeader />
       <div className="bigboard">{children}</div>
       <div className="footer">
         <a>About</a>
@@ -36,25 +19,6 @@ const MyLayout: FC<MyLayoutProps> = ({ children }) => {
           min-height: 100vh;
           display: flex;
           flex-direction: column;
-        }
-        .header {
-          display: flex;
-          flex-direction: column;
-        }
-        .bookshelf {
-          height: 3rem;
-          background: #48bb78;
-          display: flex;
-        }
-        .pulldown {
-          height: 1.5rem;
-          width: 100%;
-          background: ${colors.lightgreen};
-          border: ${borders.book};
-          border-radius: 0 0 0.5rem 0.5rem;
-        }
-        .pulldown:hover {
-          box-shadow: 0 -0.125rem 0.25rem #68d391 inset;
         }
         .bigboard {
           position: relative;
