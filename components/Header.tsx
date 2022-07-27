@@ -77,13 +77,13 @@ const MyHeader: FC = () => {
       <div className="bookshelf">
         <nav className="bookrow">
           <NavBook href="/edawakare" icon={faSeedling}>
-            枝分かれ
+            枝分かれ　大和言葉の関係図
           </NavBook>
           <NavBook href="/fuminomoto" icon={faCubes}>
-            文の素
+            文の素　語彙の品詞分類
           </NavBook>
           <NavBook href="/fuminori" icon={faScroll}>
-            文法
+            文法　仕様と性質
           </NavBook>
         </nav>
         <button className="pulldown" onClick={() => setIsOpen(!isOpen)}>
