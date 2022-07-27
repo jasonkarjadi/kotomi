@@ -1,6 +1,7 @@
 import { FC, ReactNode } from "react";
 import { colors } from "theme";
 import MyHeader from "./Header";
+import NavBtn from "./NavBtn";
 
 interface MyLayoutProps {
   children?: ReactNode;
@@ -11,8 +12,10 @@ const MyLayout: FC<MyLayoutProps> = ({ children }) => {
       <MyHeader />
       <div className="bigboard">{children}</div>
       <div className="footer">
-        <a>About</a>
-        <small>Copyright &copy; 2022 Jason Karjadi. All rights reserved</small>
+        <NavBtn href="/about">About</NavBtn>
+        <small style={{ margin: "0 0.5rem" }}>
+          Copyright &copy; 2022 Jason Karjadi. All rights reserved
+        </small>
       </div>
       <style jsx>{`
         .divbody {
@@ -24,6 +27,7 @@ const MyLayout: FC<MyLayoutProps> = ({ children }) => {
           position: relative;
           flex: 1;
           overflow-x: auto;
+          padding: 0 0.5rem;
         }
         .footer {
           height: 1.5rem;
@@ -31,7 +35,6 @@ const MyLayout: FC<MyLayoutProps> = ({ children }) => {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          padding: 0 0.5rem;
         }
       `}</style>
       <style jsx global>{`
