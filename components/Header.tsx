@@ -104,6 +104,7 @@ const MyHeader: FC = () => {
           top: ${isOpen ? "0" : "-17rem"};
           left: 0;
           z-index: 2;
+          transition: top 0.6s ease-in;
         }
         .shader {
           display: ${isOpen === false && "none"};
