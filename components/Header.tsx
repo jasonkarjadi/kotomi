@@ -59,7 +59,7 @@ const MyHeader: FC = () => {
             文の素　語彙の品詞分類
           </NavBook>
           <NavBook href="/fuminori" icon={faScroll}>
-            文法　仕様と性質
+            文法　言葉と詞の橋
           </NavBook>
         </nav>
         <button className="pulldown" onClick={() => setIsOpen(!isOpen)}>
@@ -80,17 +80,17 @@ const MyHeader: FC = () => {
           top: ${isOpen ? "0" : "-17rem"};
           left: 0;
           z-index: 2;
-          transition: top 0.6s ease-in;
+          transition: top 0.4s ease-in;
         }
         .shader {
-          display: ${isOpen === false && "none"};
           position: absolute;
           top: 0;
           left: 0;
-          z-index: 1;
+          z-index: ${isOpen ? "1" : "-1"};
           width: 100vw;
           height: 100vh;
-          background: rgba(0, 0, 0, 0.8);
+          background: ${isOpen && "rgba(0, 0, 0, 0.8)"};
+          transition: background 0.4s;
         }
         .bookrow {
           height: 20rem;
