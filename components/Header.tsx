@@ -22,9 +22,13 @@ const MyHeader: FC = () => {
   }
 
   const NavBook: FC<NavBookProps> = ({ href, icon, children }) => {
-    const NavBookIcon: FC = () => {
-      return <FontAwesomeIcon icon={icon} className="fa-fw fa-2x" />;
+    const setChildBg = (e: any, bgcolor: string) => {
+      e.currentTarget.children[1].style.background = bgcolor;
     };
+
+    const NavBookIcon: FC = () => (
+      <FontAwesomeIcon icon={icon} className="fa-fw fa-2x" />
+    );
 
     return (
       <NavBtn
@@ -39,6 +43,8 @@ const MyHeader: FC = () => {
             alignItems: "center",
             padding: "0.75rem",
           },
+          onMouseOver: (e) => setChildBg(e, "#fbd38d"),
+          onMouseOut: (e) => setChildBg(e, "#c6f6d5"),
         }}
       >
         <NavBookIcon />
