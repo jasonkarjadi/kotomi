@@ -42,8 +42,19 @@ const MyHeader: FC = () => {
         }}
       >
         <NavBookIcon />
-        <span style={{ writingMode: "vertical-rl" }}>{children}</span>
+        <span
+          style={{
+            writingMode: "vertical-rl",
+            fontFamily: "Zen Antique, serif",
+            border: borders.book,
+            padding: "1rem 0.25rem",
+            background: "#c6f6d5",
+          }}
+        >
+          {children}
+        </span>
         <NavBookIcon />
+        <style jsx>{``}</style>
       </NavBtn>
     );
   };

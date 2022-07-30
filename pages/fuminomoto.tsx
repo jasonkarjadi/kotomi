@@ -22,7 +22,11 @@ const FuminoMoto: FC = () => {
           <li>助動詞</li>
         </ul>
       </>
-      <style jsx>{``}</style>
+      <style jsx>{`
+        * {
+          font-family: Zen Antique, serif;
+        }
+      `}</style>
     </>
   );
 };

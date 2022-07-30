@@ -8,7 +8,11 @@ const MyIndex: FC = () => {
         <title>「コトミ」大和言葉を並べ立て、結び付け、描き出す</title>
       </Head>
       <>
-        <h1 className="maintitle">言泉</h1>
+        <h1 className="maintitle">
+          <ruby>
+            言泉<rt>コトミ</rt>
+          </ruby>
+        </h1>
       </>
       <style jsx>{`
         .maintitle {
@@ -18,6 +22,8 @@ const MyIndex: FC = () => {
           transform: translate(-50%, -50%);
           writing-mode: vertical-lr;
           margin: 0;
+          font-family: Zen Antique, serif;
+          font-size: 4rem;
         }
       `}</style>
     </>
