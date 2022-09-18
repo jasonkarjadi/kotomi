@@ -1,9 +1,10 @@
 import { Head, Html, Main, NextScript } from "next/document";
+import { FC } from "react";
 
-const MyDocument = () => {
+const MyDocument: FC = () => {
   return (
-    <Html>
-      <Head lang="jp" />
+    <Html lang="jp">
+      <Head />
       <body>
         <Main />
         <NextScript />
