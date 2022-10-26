@@ -1,92 +1,39 @@
-import { IconProp } from "@fortawesome/fontawesome-svg-core";
-import {
-  faChevronDown,
-  faChevronUp,
-  faCubes,
-  faScroll,
-  faSeedling,
-} from "@fortawesome/free-solid-svg-icons";
+import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { LinkProps } from "next/link";
-import { FC, ReactNode, useState } from "react";
-import { borders, colors } from "theme";
+import { useRouter } from "next/router";
+import { FC, useEffect, useState } from "react";
+import { borders, colors, navbookvalues } from "../constants";
 import NavBtn from "./NavBtn";
 
 const MyHeader: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { pathname } = useRouter();
 
-  interface NavBookProps {
-    href: LinkProps["href"];
-    icon: IconProp;
-    children?: ReactNode;
-  }
-
-  const NavBook: FC<NavBookProps> = ({ href, icon, children }) => {
-    const setChildBg = (e: any, bgcolor: string) => {
-      e.currentTarget.children[1].style.background = bgcolor;
-    };
-
-    const NavBookIcon: FC = () => (
-      <FontAwesomeIcon icon={icon} className="fa-fw fa-2x" />
-    );
-
-    return (
-      <NavBtn
-        href={href}
-        btnProps={{
-          onClick: () => isOpen === true && setIsOpen(false),
-          style: {
-            width: "12.5%",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
-            alignItems: "center",
-            padding: "0.75rem",
-          },
-          onMouseOver: (e) => setChildBg(e, "#fbd38d"),
-          onMouseOut: (e) => setChildBg(e, "#c6f6d5"),
-        }}
-      >
-        <NavBookIcon />
-        <span
-          style={{
-            writingMode: "vertical-rl",
-            fontFamily: "Zen Antique, serif",
-            border: borders.book,
-            padding: "1rem 0.25rem",
-            background: "#c6f6d5",
-          }}
-        >
-          {children}
-        </span>
-        <NavBookIcon />
-        <style jsx>{``}</style>
-      </NavBtn>
-    );
-  };
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
 
   return (
     <div className="headerspace">
-      <div className="bookshelf">
+      <header className="bookshelf">
         <nav className="bookrow">
-          <NavBook href="/edawakare" icon={faSeedling}>
-            枝分かれ　大和言葉の関係図
-          </NavBook>
-          <NavBook href="/fuminomoto" icon={faCubes}>
-            文の素　語彙の品詞分類
-          </NavBook>
-          <NavBook href="/fuminori" icon={faScroll}>
-            文法　言葉と詞の橋
-          </NavBook>
+          {navbookvalues.map((val, id) => (
+            <NavBtn key={id} href={val.link} bookicon={val.icon}>
+              {val.label}
+            </NavBtn>
+          ))}
         </nav>
-        <button className="pulldown" onClick={() => setIsOpen(!isOpen)}>
+        <button
+          className="pulldown"
+          onClick={() => setIsOpen((isOpen) => !isOpen)}
+        >
           <FontAwesomeIcon icon={isOpen ? faChevronUp : faChevronDown} />
         </button>
-      </div>
+      </header>
       <div className="shader" />
       <style jsx>{`
         .headerspace {
-          height: 4.5rem;
+          height: 5rem;
           position: relative;
         }
         .bookshelf {
@@ -104,8 +51,9 @@ const MyHeader: FC = () => {
           top: 0;
           left: 0;
           z-index: ${isOpen ? "1" : "-1"};
-          width: 100vw;
-          height: 100vh;
+          min-width: 100vw;
+          min-height: 100vh;
+          min-height: var(--doc-height);
           background: ${isOpen && "rgba(0, 0, 0, 0.8)"};
           transition: background 0.4s;
         }
@@ -115,7 +63,7 @@ const MyHeader: FC = () => {
           display: flex;
         }
         .pulldown {
-          height: 1.5rem;
+          height: 2rem;
           width: 100%;
           background: ${colors.lightgreen};
           border: ${borders.book};

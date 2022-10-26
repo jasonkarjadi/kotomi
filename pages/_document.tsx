@@ -4,7 +4,12 @@ import { FC } from "react";
 const MyDocument: FC = () => {
   return (
     <Html lang="jp">
-      <Head />
+      <Head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Zen+Antique&display=swap"
+          rel="stylesheet"
+        />
+      </Head>
       <body>
         <Main />
         <NextScript />

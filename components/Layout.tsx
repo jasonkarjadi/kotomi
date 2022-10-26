@@ -1,5 +1,5 @@
-import { FC, ReactNode } from "react";
-import { colors } from "theme";
+import { FC, ReactNode, useEffect } from "react";
+import { colors } from "../constants";
 import MyHeader from "./Header";
 import NavBtn from "./NavBtn";
 
@@ -7,38 +7,57 @@ interface MyLayoutProps {
   children?: ReactNode;
 }
 const MyLayout: FC<MyLayoutProps> = ({ children }) => {
+  useEffect(() => {
+    const setResize = () => {
+      document.documentElement.style.setProperty(
+        "--doc-height",
+        `${innerHeight}px`
+      );
+    };
+    setResize();
+    addEventListener("resize", setResize);
+    return () => {
+      removeEventListener("resize", setResize);
+    };
+  }, []);
+
   return (
-    <div className="divbody">
+    <div className="thediv">
       <MyHeader />
-      <div className="bigboard">{children}</div>
-      <div className="footer">
-        <NavBtn href="/about">About</NavBtn>
-        <small style={{ margin: "0 0.5rem" }}>
-          Copyright &copy; 2022 Jason Karjadi. All rights reserved
-        </small>
-      </div>
+      <div className="childrenbox">{children}</div>
+      <footer className="bottomfooter">
+        <nav>
+          <NavBtn href="/about">About</NavBtn>
+          <NavBtn href="/glossary">Glossary</NavBtn>
+        </nav>
+        <small>&copy; 2022 Jason Karjadi. All rights reserved</small>
+      </footer>
       <style jsx>{`
-        .divbody {
+        .thediv {
           min-height: 100vh;
+          min-height: var(--doc-height);
           display: flex;
           flex-direction: column;
         }
-        .bigboard {
+        .childrenbox {
           position: relative;
           flex: 1;
-          overflow-x: auto;
+          overflow: auto;
           padding: 0 0.5rem;
         }
-        .footer {
-          height: 1.5rem;
+        .bottomfooter {
+          height: 2rem;
           background: ${colors.lightgreen};
           display: flex;
           justify-content: space-between;
           align-items: center;
+          padding-right: 0.5rem;
         }
       `}</style>
       <style jsx global>{`
-        @import url("https://fonts.googleapis.com/css2?family=Zen+Antique");
+        :root {
+          --doc-height: 100%;
+        }
         * {
           box-sizing: border-box;
         }
