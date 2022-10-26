@@ -14,7 +14,6 @@ interface NavBtnProps {
 const NavBtn: FC<NavBtnProps> = ({ href, bookicon, children }) => {
   const { pathname } = useRouter();
   const clicked = href === pathname;
-  console.log(`pathname: ${pathname}, clicked: ${clicked}`);
 
   const NavBookIcon = bookicon && (
     <FontAwesomeIcon icon={bookicon} className="fa-fw fa-2x" />
