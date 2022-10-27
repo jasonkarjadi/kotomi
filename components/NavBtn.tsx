@@ -20,7 +20,7 @@ const NavBtn: FC<NavBtnProps> = ({ href, bookicon, children }) => {
   );
 
   return (
-    <Link href={clicked ? "/" : href}>
+    <Link href={clicked ? "/" : href} passHref legacyBehavior>
       <button
         className={`navbtn ${clicked ? "clicked" : ""} ${
           bookicon ? "navbook" : ""
